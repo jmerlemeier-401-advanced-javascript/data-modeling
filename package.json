@@ -1,0 +1,34 @@
+{
+  "name": "Data-modeling",
+  "version": "1.0.0",
+  "description": "401 Lab-04",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "jest --verbose",
+    "lint": "eslint ./**/*.js --fix",
+    "test-watch": "jest --watchAll --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmerlemeier-401-advanced-javascript/Data-modeling.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmerlemeier-401-advanced-javascript/Data-modeling/issues"
+  },
+  "homepage": "https://github.com/jmerlemeier-401-advanced-javascript/Data-modeling#readme",
+  "dependencies": {
+    "eslint": "^6.5.1",
+    "fs": "0.0.1-security",
+    "jest": "^24.9.0",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "jsdoc": "^3.6.3"
+  }
+}
