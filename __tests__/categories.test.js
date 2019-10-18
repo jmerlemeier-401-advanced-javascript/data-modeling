@@ -1,12 +1,13 @@
 const Categories = require('../categories/categories.js');
 
+
 describe('Categories Model', () => {
 
   let categories;
 
   beforeEach(() => {
     categories = new Categories();
-  })
+  });
 
   // How might we repeat this to check on types?
   it('sanitize() returns undefined with missing requirements', () => {
@@ -19,6 +20,13 @@ describe('Categories Model', () => {
     }
     expect(categories.sanitize(testRecord)).toBeUndefined();
   });
+
+  // How might we repeat this to check on types?
+  it('sanitize() returns undefined because invalid type', () => {
+    //do stuff
+    //runs sanitize function and checks fr undefined.
+  });
+
 
   it('can post() a new category', () => {
     let obj = { name: 'Test Category' };

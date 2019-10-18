@@ -2,12 +2,8 @@
 
 const uuid = require('uuid/v4');
 
-// const schema = {
-//   id: {type: String, required: true},
-//   text: {type: String, required: true},
-//   createdAt: {type: String, required: true},
-//   updatedAt: {type: String, required: true}
-// }
+const Validator = require('../validator');
+const validator = new Validator();
 
 class Model {
 
@@ -38,11 +34,13 @@ class Model {
     return Promise.resolve();
   }
 
+  //Add stuff from validator to this
   sanitize(entry) {
 
+    
     let valid = true;
     let record = {};
-
+    
     Object.keys(this.schema).forEach(field => {
       if (this.schema[field].required) {
         if (entry[field]) {
@@ -53,6 +51,11 @@ class Model {
       }
       else {
         record[field] = entry[field];
+      }
+      
+      const type = typeof this.schema[field];
+      if (validator.isValid(entry, type) === false) {
+        valid = false;
       }
     });
 
