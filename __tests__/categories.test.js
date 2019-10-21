@@ -58,11 +58,31 @@ describe('Categories Model', () => {
   });
 
   it('can update a category', () => {
-
+    //create test categories
+    let obj = { name: 'Test Category' };
+    categories.create(obj)
+      .then(results => {
+        return categories.get(results)
+          .then(results => {
+            categories.update({ name: 'Test Category' });
+            expect(results).toBe({ name: 'Test Category' });
+          });
+      });
   });
 
   it('can delete a category', () => {
-
+    let obj = { name: 'Test create' };
+    return categories.create(obj)
+      .then(results => {
+        console.log(results.id);
+        categories.delete()
+          .then(() => {
+            categories.get(results.id)
+              .then(results => {
+                expect(results.length).toBe(0);
+              });
+          });
+      });
   });
 });
 
