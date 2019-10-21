@@ -6,24 +6,35 @@ class Validator {
  * Method: isValid
  * TODO: Define the rules ... how do we send them in? How do we identify?
  * @param {any} input
- * @param {function} rules - that defines what do validate
+ * @param {string} rules - that defines what do validate
  * @returns {boolean}
  */
-  isValid (input1, rules) {
-    return rules(input1);
-  }
 
-  // OR you could do this (optional):
-  // validator.isValid(1, (input2) => {
-  //   return typeof input1 === 'number';
-  // });
+  isValid (input, rules) {
+    switch (rules) {
+    case 'string':
+      return this.string(input);
+    case 'number':
+      return this.number(input);
+    case 'array':
+      return this.isArray(input);
+    case 'object':
+      return this.object(input);
+    case 'boolean':
+      return this.boolean(input);
+    case 'function':
+      return this.function(input);
+    default:
+      return false;
+    }
+  }
 
   /**
  * Method: isString?
  * @param input {anything} input - is this input a valid string
  * @returns {boolean}
  */
-  string (input) {
+  string (input) {  
     return typeof input === 'string'; //returns Boolean
   }
 

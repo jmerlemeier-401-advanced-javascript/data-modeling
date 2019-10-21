@@ -2,13 +2,14 @@
 
 const uuid = require('uuid/v4');
 
-const Validator = require('../validator');
+const Validator = require('./validator');
 const validator = new Validator();
 
-class Model {
+class DataModel {
 
-  constructor() {
+  constructor(schema) {
     this.database = [];
+    this.schema = schema;
   }
 
   get(id) {
@@ -37,7 +38,6 @@ class Model {
   //Add stuff from validator to this
   sanitize(entry) {
 
-    
     let valid = true;
     let record = {};
     
@@ -48,14 +48,14 @@ class Model {
         } else {
           valid = false;
         }
-      }
-      else {
+      } else {
         record[field] = entry[field];
       }
-      
-      const type = typeof this.schema[field];
-      if (validator.isValid(entry, type) === false) {
-        valid = false;
+      const type = this.schema[field].type;
+      for (const key in record) {
+        if (validator.isValid(record[key], type) === false) {
+          valid = false;
+        }
       }
     });
 
@@ -64,4 +64,4 @@ class Model {
 
 }
 
-module.exports = Model;
+module.exports = DataModel;
